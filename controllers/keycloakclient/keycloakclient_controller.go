@@ -118,11 +118,6 @@ func (r *ReconcileKeycloakClient) Reconcile(ctx context.Context, request reconci
 }
 
 func (r *ReconcileKeycloakClient) tryReconcile(ctx context.Context, keycloakClient *keycloakApi.KeycloakClient) error {
-	err := r.helper.SetRealmOwnerRef(ctx, keycloakClient)
-	if err != nil {
-		return fmt.Errorf("unable to set realm owner ref: %w", err)
-	}
-
 	kClient, err := r.helper.CreateKeycloakClientFromRealmRef(ctx, keycloakClient)
 	if err != nil {
 		return fmt.Errorf("unable to create keycloak client from realm ref: %w", err)
